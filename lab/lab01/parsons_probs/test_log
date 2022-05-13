@@ -1,0 +1,41 @@
+=====================================================================
+Assignment: Lab 1
+OK, version v1.18.1
+=====================================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests
+
+---------------------------------------------------------------------
+Doctests for k_occurrence
+
+>>> k_occurrence(5, 10)  # .Case 1
+0
+:D Test Case 1 passed
+---------------------------------------------------------------------
+
+>>> k_occurrence(5, 5115)  # .Case 2
+2
+:D Test Case 2 passed
+---------------------------------------------------------------------
+
+>>> k_occurrence(0, 100)  # .Case 3
+2
+:D Test Case 3 passed
+---------------------------------------------------------------------
+
+>>> k_occurrence(0, 0)  # .Case 4
+0
+:D Test Case 4 passed
+---------------------------------------------------------------------
+
+-- OK! --
+---------------------------------------------------------------------
+Test summary
+    1 test cases passed! No cases failed.
+
+Backup... 0.0% completeBackup... 100% complete
+[31mBackup past deadline by 106 days, 2 hours, 51 minutes, and 22 seconds[0m
+[32mBackup successful for user: yinyhchn@gmail.com[0m
+[32mURL: https://okpy.org/cal/cs61a/sp22/lab01/backups/rEMN6k[0m
+
