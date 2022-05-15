@@ -1,0 +1,31 @@
+=====================================================================
+Assignment: Homework 2
+OK, version v1.18.1
+=====================================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests
+
+---------------------------------------------------------------------
+Doctests for filter_sequence
+
+>>> filter_sequence(lambda x: x % 2 == 0, 0, 10) # .Case 1
+30
+:D Test Case 1 passed
+---------------------------------------------------------------------
+
+>>> filter_sequence(lambda x: x % 2 == 1, 0, 10) # .Case 2
+25
+:D Test Case 2 passed
+---------------------------------------------------------------------
+
+-- OK! --
+---------------------------------------------------------------------
+Test summary
+    1 test cases passed! No cases failed.
+
+Backup... 0.0% completeBackup... 100% complete
+[31mBackup past deadline by 100 days, 3 hours, 39 minutes, and 30 seconds[0m
+[32mBackup successful for user: yinyhchn@gmail.com[0m
+[32mURL: https://okpy.org/cal/cs61a/sp22/hw02/backups/ME56XG[0m
+
