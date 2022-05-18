@@ -1,5 +1,8 @@
 """CS 61A Presents The Game of Hog."""
 
+from email import message
+from email.errors import StartBoundaryNotFoundDefect
+from lib2to3.pytree import LeafPattern
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
@@ -170,11 +173,21 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     leader = None  # To be used in problem 7
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    while score0 < goal and score1 < goal:
+        if who == 0:
+            num_rolls = strategy0(score0, score1)
+            score0 += take_turn(num_rolls, score0, score1, dice, goal)
+            score0 += hog_pile(score0, score1)
+        else:
+            num_rolls = strategy1(score1, score0)
+            score1 += take_turn(num_rolls, score1, score0, dice, goal)
+            score1 += hog_pile(score1, score0)
+        who = next_player(who)
     # END PROBLEM 5
     # (note that the indentation for the problem 7 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+        leader, message = say(score0, score1, leader)
+        if message: print(message)
     # END PROBLEM 7
     return score0, score1
 
@@ -208,7 +221,38 @@ def announce_lead_changes(score0, score1, last_leader=None):
     Player 0 takes the lead by 2
     """
     # BEGIN PROBLEM 6
-    "*** YOUR CODE HERE ***"
+    leader = None
+    message = None
+    def func(score0, score1, leader):
+        if last_leader == None:
+            if score0 < score1:
+                leader = 1
+                message = f"Player 1 takes the lead by {score1 - score0}"
+            elif score0 == score1:
+                leader = None
+                message = None
+            else:
+                leader = 0
+                message = f"Player 0 takes the lead by {score0 - score1}"
+        else:
+            if score0 < score1 and last_leader == 0:
+                leader = 1
+                message = f"Player 1 takes the lead by {score1 - score0}"
+            elif score0 < score1 and last_leader == 1:
+                leader = 1
+                message = None
+            elif score0 > score1 and last_leader == 0:
+                leader = 0
+                message = None
+            elif score0 > score1 and last_leader == 1:
+                leader = 0
+                message = f"Player 0 takes the lead by {score0 - score1}"
+            elif score0 == score1:
+                leader = None
+                message = None
+        return leader, message
+
+    return func(score0, score1, leader)
     # END PROBLEM 6
 
 
@@ -373,5 +417,11 @@ def run(*args):
     if args.run_experiments:
         run_experiments()
 
-if __name__ == '__main__':
-    take_turn(2, 5, 0, make_test_dice(4, 5, 1))
+def wrapper(s0, s1, last_leader=None):
+    player, message = announce_lead_changes(s0, s1, last_leader)
+    print(player)
+    print(message)
+    return player
+
+if __name__ == "__main__":
+    s0, s1 = play(always_roll(1), always_roll(2), dice=make_test_dice(1, 3, 3), goal=10, say=announce_lead_changes)
