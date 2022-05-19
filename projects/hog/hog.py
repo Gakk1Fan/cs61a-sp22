@@ -1,8 +1,5 @@
 """CS 61A Presents The Game of Hog."""
 
-from email import message
-from email.errors import StartBoundaryNotFoundDefect
-from lib2to3.pytree import LeafPattern
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
@@ -221,9 +218,7 @@ def announce_lead_changes(score0, score1, last_leader=None):
     Player 0 takes the lead by 2
     """
     # BEGIN PROBLEM 6
-    leader = None
-    message = None
-    def func(score0, score1, leader):
+    def func(score0, score1, last_leader):
         if last_leader == None:
             if score0 < score1:
                 leader = 1
@@ -252,7 +247,7 @@ def announce_lead_changes(score0, score1, last_leader=None):
                 message = None
         return leader, message
 
-    return func(score0, score1, leader)
+    return func(score0, score1, last_leader)
     # END PROBLEM 6
 
 
@@ -416,12 +411,3 @@ def run(*args):
 
     if args.run_experiments:
         run_experiments()
-
-def wrapper(s0, s1, last_leader=None):
-    player, message = announce_lead_changes(s0, s1, last_leader)
-    print(player)
-    print(message)
-    return player
-
-if __name__ == "__main__":
-    s0, s1 = play(always_roll(1), always_roll(2), dice=make_test_dice(1, 3, 3), goal=10, say=announce_lead_changes)
