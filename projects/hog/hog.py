@@ -1,5 +1,6 @@
 """CS 61A Presents The Game of Hog."""
 
+from tkinter import scrolledtext
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
@@ -218,36 +219,33 @@ def announce_lead_changes(score0, score1, last_leader=None):
     Player 0 takes the lead by 2
     """
     # BEGIN PROBLEM 6
-    def func(score0, score1, last_leader):
-        if last_leader == None:
-            if score0 < score1:
-                leader = 1
-                message = f"Player 1 takes the lead by {score1 - score0}"
-            elif score0 == score1:
-                leader = None
-                message = None
-            else:
-                leader = 0
-                message = f"Player 0 takes the lead by {score0 - score1}"
+    if last_leader == None:
+        if score0 < score1:
+            leader = 1
+            message = f"Player 1 takes the lead by {score1 - score0}"
+        elif score0 == score1:
+            leader = None
+            message = None
         else:
-            if score0 < score1 and last_leader == 0:
-                leader = 1
-                message = f"Player 1 takes the lead by {score1 - score0}"
-            elif score0 < score1 and last_leader == 1:
-                leader = 1
-                message = None
-            elif score0 > score1 and last_leader == 0:
-                leader = 0
-                message = None
-            elif score0 > score1 and last_leader == 1:
-                leader = 0
-                message = f"Player 0 takes the lead by {score0 - score1}"
-            elif score0 == score1:
-                leader = None
-                message = None
-        return leader, message
-
-    return func(score0, score1, last_leader)
+            leader = 0
+            message = f"Player 0 takes the lead by {score0 - score1}"
+    else:
+        if score0 < score1 and last_leader == 0:
+            leader = 1
+            message = f"Player 1 takes the lead by {score1 - score0}"
+        elif score0 < score1 and last_leader == 1:
+            leader = 1
+            message = None
+        elif score0 > score1 and last_leader == 0:
+            leader = 0
+            message = None
+        elif score0 > score1 and last_leader == 1:
+            leader = 0
+            message = f"Player 0 takes the lead by {score0 - score1}"
+        elif score0 == score1:
+            leader = None
+            message = None
+    return leader, message
     # END PROBLEM 6
 
 
@@ -313,7 +311,13 @@ def make_averaged(original_function, total_samples=1000):
     3.0
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    def func(*args):
+        cnt, tot = 0, 0
+        while cnt < total_samples:
+            cnt += 1
+            tot += original_function(*args)
+        return tot / total_samples
+    return func
     # END PROBLEM 8
 
 
@@ -327,7 +331,15 @@ def max_scoring_num_rolls(dice=six_sided, total_samples=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    average_func = make_averaged(roll_dice, total_samples)
+    max_i = 0
+    curr_average_result = 0
+    for i in range(1, 11):
+        curr_average = average_func(i, dice)
+        if curr_average > curr_average_result:
+            max_i = i
+            curr_average_result = curr_average
+    return max_i
     # END PROBLEM 9
 
 
@@ -368,7 +380,9 @@ def hefty_hogs_strategy(score, opponent_score, threshold=8, num_rolls=6):
     returns NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 6  # Remove this line once implemented.
+    if hefty_hogs(score, opponent_score) >= threshold:
+        return 0
+    return num_rolls
     # END PROBLEM 10
 
 
@@ -378,7 +392,10 @@ def hog_pile_strategy(score, opponent_score, threshold=8, num_rolls=6):
     Otherwise, it returns NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 6  # Remove this line once implemented.
+    next_score = score + hefty_hogs(score, opponent_score)
+    if hog_pile(next_score, opponent_score) > 0:
+        return 0
+    return hefty_hogs_strategy(score, opponent_score, threshold, num_rolls)
     # END PROBLEM 11
 
 
@@ -411,6 +428,3 @@ def run(*args):
 
     if args.run_experiments:
         run_experiments()
-
-if __name__ == "__main__":
-    print
