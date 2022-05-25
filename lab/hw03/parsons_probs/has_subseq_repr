@@ -1,0 +1,12 @@
+def has_subseq(n, seq): #0given
+if !BLANK:  #1given #blankseq == 0
+return True #2given
+if !BLANK:  #1given #blankn >= seq and n % 10 == seq % 10
+return has_subseq(!BLANK) #2given #blankn // 10, seq // 10
+if !BLANK:  #1given #blankn >= seq and n % 10 != seq % 10
+return has_subseq(!BLANK) #2given #blankn // 10, seq
+return False #1given
+print('DEBUG:', !BLANK)
+print('DEBUG:', !BLANK)
+# !BLANK
+# !BLANK

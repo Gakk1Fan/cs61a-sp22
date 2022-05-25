@@ -1,0 +1,31 @@
+=====================================================================
+Assignment: Homework 3
+OK, version v1.18.1
+=====================================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests
+
+---------------------------------------------------------------------
+Doctests for has_subseq
+
+>>> has_subseq(123, 12)
+True
+>>> has_subseq(141, 11)
+True
+>>> has_subseq(144, 12)
+False
+>>> has_subseq(144, 1441)
+False
+>>> has_subseq(1343412, 134)
+True
+-- OK! --
+---------------------------------------------------------------------
+Test summary
+    1 test cases passed! No cases failed.
+
+Backup... 0.0% completeBackup... 100% complete
+[31mBackup past deadline by 96 days, 19 minutes, and 4 seconds[0m
+[32mBackup successful for user: yinyhchn@gmail.com[0m
+[32mURL: https://okpy.org/cal/cs61a/sp22/hw03/backups/5l1PVR[0m
+
