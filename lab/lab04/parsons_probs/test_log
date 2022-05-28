@@ -1,0 +1,29 @@
+=====================================================================
+Assignment: Lab 4
+OK, version v1.18.1
+=====================================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests
+
+---------------------------------------------------------------------
+Doctests for line_stepper
+
+>>> line_stepper(1, 1)
+1
+>>> line_stepper(0, 2)
+2
+>>> line_stepper(-3, 3)
+1
+>>> line_stepper(3, 5)
+5
+-- OK! --
+---------------------------------------------------------------------
+Test summary
+    1 test cases passed! No cases failed.
+
+Backup... 0.0% completeBackup... 100% complete
+[31mBackup past deadline by 100 days, 5 hours, 22 minutes, and 30 seconds[0m
+[32mBackup successful for user: yinyhchn@gmail.com[0m
+[32mURL: https://okpy.org/cal/cs61a/sp22/lab04/backups/3jK5Lp[0m
+
